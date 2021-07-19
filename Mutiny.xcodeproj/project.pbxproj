@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C959064726A60357007C3A4D /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = C959064626A60357007C3A4D /* README.md */; };
 		C9BAFE4026A5F45D00704B47 /* MutinyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9BAFE3F26A5F45D00704B47 /* MutinyApp.swift */; };
 		C9BAFE4226A5F45D00704B47 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9BAFE4126A5F45D00704B47 /* ContentView.swift */; };
 		C9BAFE4426A5F45F00704B47 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C9BAFE4326A5F45F00704B47 /* Assets.xcassets */; };
@@ -23,6 +24,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C959064626A60357007C3A4D /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
 		C9BAFE3C26A5F45D00704B47 /* Mutiny.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mutiny.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9BAFE3F26A5F45D00704B47 /* MutinyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MutinyApp.swift; sourceTree = "<group>"; };
 		C9BAFE4126A5F45D00704B47 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -71,6 +73,7 @@
 		C9BAFE3E26A5F45D00704B47 /* Mutiny */ = {
 			isa = PBXGroup;
 			children = (
+				C959064626A60357007C3A4D /* README.md */,
 				C9BAFE3F26A5F45D00704B47 /* MutinyApp.swift */,
 				C9BAFE4126A5F45D00704B47 /* ContentView.swift */,
 				C9BAFE5B26A5F4FC00704B47 /* AppDelegate.swift */,
@@ -168,6 +171,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C959064726A60357007C3A4D /* README.md in Resources */,
 				C9BAFE4726A5F45F00704B47 /* Preview Assets.xcassets in Resources */,
 				C9BAFE4426A5F45F00704B47 /* Assets.xcassets in Resources */,
 			);
