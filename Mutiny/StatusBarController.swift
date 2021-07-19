@@ -108,8 +108,11 @@ class StatusBarController {
     
     func toggleInputMute() {
         var targetVolume:Float32 = 0.0
-        let bezel = BezelNotification.init(text: "", visibleTime: 1.0)
-        if(isMuted){
+        isMuted.toggle()
+
+        if(isMuted != true ){
+            let bezel = BezelNotification.init(text: "", visibleTime: 1.0,muted: isMuted)
+
             NSSound.systemInputVolume = lastKnownNonZeroInputVolume
             statusBar.button?.image = imgIconUnmuted
             bezel.text = "Mic Unmuted!"
@@ -118,6 +121,7 @@ class StatusBarController {
             }
 
         }else{
+            let bezel = BezelNotification.init(text: "", visibleTime: 1.0,muted: isMuted)
             NSSound.systemInputVolume = 0.0
             statusBar.button?.image = imgIconMuted
             bezel.text = "Mic Muted!"
@@ -126,7 +130,6 @@ class StatusBarController {
             }
             
         }
-        isMuted.toggle()
         if(Preferences.enableSounds){
             playSound(isMuted)
         }

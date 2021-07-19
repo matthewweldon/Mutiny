@@ -6,7 +6,7 @@
 //
 
 import Cocoa
-
+import SwiftUI
 
 /// A utility class for displaying Xcode-like notifications, aka bezel notifications.
 /// It currently only supports displaying a given text that will be centered on screen, will remain on screen for 3 seconds,
@@ -19,16 +19,21 @@ public class BezelNotification {
         }
     }
     
+    
     let window: NSWindow
     let visibleTime: TimeInterval
-    var image = NSImageView.init(frame: NSRect(origin: .zero, size: CGSize(width: 100, height: 500)))
     var label: NSTextField!
-    
+    var toast = NSHostingView.init(rootView: Toast.init(muted: false))
+    var muted:Bool
     /// Create a BezelNotification with the given text. It is not displayed until `show()` or `runModal()` is called.
     /// The text is displayed with regular weight and a font size of 18, on a single line.
     public init(text: String = "",
-                visibleTime: TimeInterval = 2.0) {
+                visibleTime: TimeInterval = 2.0,muted:Bool=true) {
         self.text = text
+        self.muted = muted
+        if(self.muted){
+            self.toast = NSHostingView.init(rootView: Toast.init(muted: true))
+        }
         self.window = NSWindow(contentRect: NSRect(origin: .zero, size: CGSize(width: 100, height: 500)),
                                styleMask: .borderless, backing: .buffered, defer: true)
         self.visibleTime = visibleTime
@@ -89,12 +94,6 @@ public class BezelNotification {
             visualEffectView.topAnchor.constraint(equalTo: contentView.topAnchor),
             visualEffectView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
         ])
-        image.image = NSImage(named:NSImage.Name("mic-fill-white"))
-        image.translatesAutoresizingMaskIntoConstraints = false
-        image.setContentHuggingPriority(.defaultHigh, for: .horizontal)
-        image.setContentHuggingPriority(.defaultHigh, for: .vertical)
-        image.setContentCompressionResistancePriority(.required, for: .vertical)
-        image.setContentCompressionResistancePriority(.required, for: .horizontal)
 
         label = NSTextField(labelWithString: self.text)
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -103,16 +102,29 @@ public class BezelNotification {
         label.setContentHuggingPriority(.defaultHigh, for: .vertical)
         label.setContentCompressionResistancePriority(.required, for: .vertical)
         label.setContentCompressionResistancePriority(.required, for: .horizontal)
-        
-        visualEffectView.addSubview(label)
-        //visualEffectView.addSubview(image)
 
-        NSLayoutConstraint.activate([
-            label.leadingAnchor.constraint(equalTo: visualEffectView.leadingAnchor, constant: 10),
-            label.trailingAnchor.constraint(equalTo: visualEffectView.trailingAnchor, constant: -10),
-            label.topAnchor.constraint(equalTo: visualEffectView.topAnchor, constant: 10),
-            label.bottomAnchor.constraint(equalTo: visualEffectView.bottomAnchor, constant: -10)
-        ])
+        
+        toast.translatesAutoresizingMaskIntoConstraints = false
+        toast.setContentHuggingPriority(.defaultHigh, for: .horizontal)
+        toast.setContentHuggingPriority(.defaultHigh, for: .vertical)
+        toast.setContentCompressionResistancePriority(.required, for: .vertical)
+        toast.setContentCompressionResistancePriority(.required, for: .horizontal)
+//        visualEffectView.addSubview(label)
+        visualEffectView.addSubview(toast)
+
+//        NSLayoutConstraint.activate([
+//            label.leadingAnchor.constraint(equalTo: visualEffectView.leadingAnchor, constant: 10),
+//            label.trailingAnchor.constraint(equalTo: visualEffectView.trailingAnchor, constant: -10),
+//            label.topAnchor.constraint(equalTo: visualEffectView.topAnchor, constant: 10),
+//            label.bottomAnchor.constraint(equalTo: visualEffectView.bottomAnchor, constant: -10)
+//        ])
+                NSLayoutConstraint.activate([
+                    toast.leadingAnchor.constraint(equalTo: visualEffectView.leadingAnchor, constant: 10),
+                    toast.trailingAnchor.constraint(equalTo: visualEffectView.trailingAnchor, constant: -10),
+                    toast.topAnchor.constraint(equalTo: visualEffectView.topAnchor, constant: 10),
+                    toast.bottomAnchor.constraint(equalTo: visualEffectView.bottomAnchor, constant: -10)
+                ])
+        
     }
     
     var fadeOutTimer: Timer?
