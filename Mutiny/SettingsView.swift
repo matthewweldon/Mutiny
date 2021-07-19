@@ -9,11 +9,35 @@ import SwiftUI
 import KeyboardShortcuts
 
 struct SettingsView: View {
+    @ObservedObject var viewModel = SettingsViewModel()
+
+    
+
     var body: some View {
-        HStack(alignment: .firstTextBaseline) {
-            Text("Toggle Mute")
-            KeyboardShortcuts.Recorder(for: .toggleInputMute)
+        VStack(alignment: .leading){
+            HStack(alignment: .firstTextBaseline) {
+                Text("Toggle Mute Shortcut")
+                KeyboardShortcuts.Recorder(for: .toggleInputMute)
+            }.padding()
+            HStack(alignment: .firstTextBaseline){
+                Toggle("Enable Sound", isOn: $viewModel.enableSounds)
+                    .toggleStyle(SwitchToggleStyle())
+
+            }.padding()
+            HStack(alignment: .firstTextBaseline){
+                Toggle("Enable Overlay Notification", isOn: $viewModel.enableToast)
+                    .toggleStyle(SwitchToggleStyle())
+            }.padding()
+            HStack(alignment: .firstTextBaseline){
+                Toggle("Red Mute Icon", isOn: $viewModel.redMuteIcon)
+                    .toggleStyle(SwitchToggleStyle())
+
+            }.padding()
+
+
         }.padding()
+        
+        
 
     }
 }

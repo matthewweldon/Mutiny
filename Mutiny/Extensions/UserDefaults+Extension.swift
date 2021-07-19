@@ -8,7 +8,11 @@
 import Foundation
 extension UserDefaults {
     enum Key {
-        static let globalKey = "globalKey"
+        static let enableSounds = "enableSounds"
+        static let enableToast = "enableToast"
+        static let redMuteIcon = "redMuteIcon"
+
+
     }
     
     open override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
