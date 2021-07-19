@@ -18,7 +18,7 @@ or
 - left click the icon to mute/unmute your current default input device (microphone),
 - right click then click preferences to edit the hotkey for mute, (I use f13)
 
-This software is provided without warranty or gaurentee of any kind.
+This software is provided without warranty or guarantee of any kind.
 
 ## 💸
 This is a tiny little free app, but if you desperately want to [buy me a coffee](https://www.buymeacoffee.com/matthewweldon), then I would happily take it.
