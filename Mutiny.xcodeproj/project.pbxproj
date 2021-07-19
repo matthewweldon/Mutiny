@@ -8,8 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		C959064726A60357007C3A4D /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = C959064626A60357007C3A4D /* README.md */; };
+		C959064926A6137F007C3A4D /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = C959064826A6137F007C3A4D /* Preferences.swift */; };
+		C959064B26A614A5007C3A4D /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C959064A26A614A5007C3A4D /* SettingsViewModel.swift */; };
+		C959064D26A61C32007C3A4D /* Notification.Name+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C959064C26A61C32007C3A4D /* Notification.Name+Extension.swift */; };
 		C9BAFE4026A5F45D00704B47 /* MutinyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9BAFE3F26A5F45D00704B47 /* MutinyApp.swift */; };
-		C9BAFE4226A5F45D00704B47 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9BAFE4126A5F45D00704B47 /* ContentView.swift */; };
 		C9BAFE4426A5F45F00704B47 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C9BAFE4326A5F45F00704B47 /* Assets.xcassets */; };
 		C9BAFE4726A5F45F00704B47 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C9BAFE4626A5F45F00704B47 /* Preview Assets.xcassets */; };
 		C9BAFE5326A5F49400704B47 /* UserDefaults+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9BAFE4F26A5F49400704B47 /* UserDefaults+Extension.swift */; };
@@ -25,9 +27,11 @@
 
 /* Begin PBXFileReference section */
 		C959064626A60357007C3A4D /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
+		C959064826A6137F007C3A4D /* Preferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
+		C959064A26A614A5007C3A4D /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
+		C959064C26A61C32007C3A4D /* Notification.Name+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification.Name+Extension.swift"; sourceTree = "<group>"; };
 		C9BAFE3C26A5F45D00704B47 /* Mutiny.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mutiny.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9BAFE3F26A5F45D00704B47 /* MutinyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MutinyApp.swift; sourceTree = "<group>"; };
-		C9BAFE4126A5F45D00704B47 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		C9BAFE4326A5F45F00704B47 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C9BAFE4626A5F45F00704B47 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		C9BAFE4826A5F45F00704B47 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -54,6 +58,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C959064E26A61E81007C3A4D /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				C9BAFE5D26A5F50500704B47 /* SettingsView.swift */,
+				C959064A26A614A5007C3A4D /* SettingsViewModel.swift */,
+				C959064826A6137F007C3A4D /* Preferences.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
 		C9BAFE3326A5F45D00704B47 = {
 			isa = PBXGroup;
 			children = (
@@ -75,11 +89,10 @@
 			children = (
 				C959064626A60357007C3A4D /* README.md */,
 				C9BAFE3F26A5F45D00704B47 /* MutinyApp.swift */,
-				C9BAFE4126A5F45D00704B47 /* ContentView.swift */,
 				C9BAFE5B26A5F4FC00704B47 /* AppDelegate.swift */,
-				C9BAFE5D26A5F50500704B47 /* SettingsView.swift */,
 				C9BAFE5E26A5F50500704B47 /* StatusBarController.swift */,
 				C9BAFE6326A5F52400704B47 /* BezelNotification.swift */,
+				C959064E26A61E81007C3A4D /* Settings */,
 				C9BAFE5726A5F49A00704B47 /* Extensions */,
 				C9BAFE4326A5F45F00704B47 /* Assets.xcassets */,
 				C9BAFE4826A5F45F00704B47 /* Info.plist */,
@@ -104,6 +117,7 @@
 				C9BAFE5026A5F49400704B47 /* NSSound+Extension.swift */,
 				C9BAFE5226A5F49400704B47 /* String+Extension.swift */,
 				C9BAFE4F26A5F49400704B47 /* UserDefaults+Extension.swift */,
+				C959064C26A61C32007C3A4D /* Notification.Name+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -187,13 +201,15 @@
 				C9BAFE5426A5F49400704B47 /* NSSound+Extension.swift in Sources */,
 				C9BAFE6426A5F52500704B47 /* BezelNotification.swift in Sources */,
 				C9BAFE5F26A5F50500704B47 /* SettingsView.swift in Sources */,
+				C959064D26A61C32007C3A4D /* Notification.Name+Extension.swift in Sources */,
 				C9BAFE5526A5F49400704B47 /* KeyboardShortcuts+Extension.swift in Sources */,
-				C9BAFE4226A5F45D00704B47 /* ContentView.swift in Sources */,
 				C9BAFE6026A5F50500704B47 /* StatusBarController.swift in Sources */,
 				C9BAFE5326A5F49400704B47 /* UserDefaults+Extension.swift in Sources */,
+				C959064926A6137F007C3A4D /* Preferences.swift in Sources */,
 				C9BAFE5C26A5F4FC00704B47 /* AppDelegate.swift in Sources */,
 				C9BAFE5626A5F49400704B47 /* String+Extension.swift in Sources */,
 				C9BAFE4026A5F45D00704B47 /* MutinyApp.swift in Sources */,
+				C959064B26A614A5007C3A4D /* SettingsViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
