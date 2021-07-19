@@ -9,7 +9,9 @@ Has an optional sound and overlay to give feedback on toggle.
 This was inspired by and some components were adapted from many similar apps that came before it, but I brought together a few new things to this project to make it work for me. 
 
 ## Installation 
-- Download the binary on the [release page](https://github.com/matthewweldon/Mutiny/releases/tag/1.1), drag to applications (or another folder if you're like that)
+- Download the app.zip on the [release page](https://github.com/matthewweldon/Mutiny/releases/tag/1.1), drag to applications (or another folder if you're like that)
+or
+- Download the project and compile yourself with XCode!
 
 ## Usage 
 - Runs in the status bar, 
