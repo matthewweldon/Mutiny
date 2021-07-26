@@ -22,10 +22,10 @@ struct Toast: View {
             Image(imageString)
                 .resizable()
                 .scaledToFit()
-                .frame(width: 200, height: 200)
+                .frame(width: 150, height: 150)
 
             Text(message).font(.system(size: 20, weight: .light, design: .default))
-        }
+        }.padding()
     }
     
 }

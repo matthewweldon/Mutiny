@@ -17,7 +17,7 @@ class StatusBarController {
     private var imgIconMuted = Preferences.redMuteIcon ? NSImage(named:NSImage.Name("mic-mute-fill-red")) : NSImage(named:NSImage.Name("mic-mute-fill"))
     private var isMuted = false
     private var lastKnownNonZeroInputVolume:Float32 = 0.0 //start at zero before measuring
-   
+    private var defaultInputDeviceName:String { return NSSound.getDefaultInputDeviceName() }
     init() {
         if let button = statusBar.button {
             button.image = self.imgIconUnmuted
@@ -44,14 +44,40 @@ class StatusBarController {
         syncronizeInputVolumeState()
         
     }
-    
+//    @objc func setInputVolume(val:Float32){
+//        NSSound.systemInputVolume = val
+//    }
+//    @objc func setInputVolume1(){
+//        NSSound.systemInputVolume = 1
+//    }
     func getContextMenu()->NSMenu{
         let menu = NSMenu()
+        
+        let name = defaultInputDeviceName
+        if (name != "" ){
+            let nameItem = NSMenuItem.init(title: defaultInputDeviceName, action: nil, keyEquivalent: "")
+            nameItem.isEnabled = false
+            menu.addItem(nameItem)
+            menu.addItem(NSMenuItem.separator())
+        }
+//        let inputVolumeMenuItem = NSMenuItem.init(title: "Set Output Level", action: nil, keyEquivalent: "")
+//        let inputVolumeMenu = NSMenu.init(title: "Set Output Level")
+//        for i in 5...10{
+//            let level = i * 10
+//            let levelActual:Float32 = Float32.init(i)/10
+//            let menuItem = NSMenuItem(title: "\(level)", action: #selector(setInputVolume1), keyEquivalent: "")
+//
+//            inputVolumeMenu.addItem(menuItem)
+//        }
+//        menu.addItem(inputVolumeMenuItem)
+//        menu.setSubmenu(inputVolumeMenu, for: inputVolumeMenuItem)
+//        
+
         
         let prefItem = NSMenuItem(title: "Preferences...".localized, action: #selector(showPreferencesView), keyEquivalent: "P")
         prefItem.target = self
         menu.addItem(prefItem)
-    
+        
         
         
         menu.addItem(NSMenuItem.separator())
@@ -60,7 +86,7 @@ class StatusBarController {
         return menu
     }
 
-    
+ 
     
     @objc func handleIconClicked(_ sender: AnyObject?) {
        
@@ -92,14 +118,7 @@ class StatusBarController {
     }
     
     @objc func showPreferencesView(){
-//        var windowRef:NSWindow
-//        windowRef = NSWindow(
-//            contentRect: NSRect(x: 100, y: 100, width: 100, height: 600),
-//            styleMask: [.titled, .closable, .miniaturizable, .resizable, .fullSizeContentView],
-//            backing: .buffered, defer: false)
-//        windowRef.contentView = NSHostingView(rootView: PreferencesView())
-//        windowRef.makeKeyAndOrderFront(nil)
-//
+
         NSApp.activate(ignoringOtherApps: true)
 
         NSApp.sendAction(Selector(("showPreferencesWindow:")), to: nil, from: nil)
@@ -107,24 +126,21 @@ class StatusBarController {
     }
     
     func toggleInputMute() {
-        var targetVolume:Float32 = 0.0
         isMuted.toggle()
 
         if(isMuted != true ){
-            let bezel = BezelNotification.init(text: "", visibleTime: 1.0,muted: isMuted)
-
+            let bezel = BezelNotification.init(view: NSHostingView.init(rootView: Toast.init(muted: false)), visibleTime: 1.0 )
+            
             NSSound.systemInputVolume = lastKnownNonZeroInputVolume
             statusBar.button?.image = imgIconUnmuted
-            bezel.text = "Mic Unmuted!"
             if(Preferences.enableToast){
                 bezel.show()
             }
 
         }else{
-            let bezel = BezelNotification.init(text: "", visibleTime: 1.0,muted: isMuted)
+            let bezel = BezelNotification.init(view: NSHostingView.init(rootView: Toast.init(muted: true)), visibleTime: 1.0)
             NSSound.systemInputVolume = 0.0
             statusBar.button?.image = imgIconMuted
-            bezel.text = "Mic Muted!"
             if(Preferences.enableToast){
                 bezel.show()
             }
@@ -140,12 +156,12 @@ class StatusBarController {
     // Creating the sequence
     func playSound(_ muted:Bool){
         var sequence : MusicSequence? = nil
-            var musicSequence = NewMusicSequence(&sequence)
+        _ = NewMusicSequence(&sequence)
             
 
             var track : MusicTrack? = nil
             if(sequence == nil ){return}
-            var musicTrack = try MusicSequenceNewTrack(sequence!, &track)
+            var musicTrack = MusicSequenceNewTrack(sequence!, &track)
 
             // Adding notes
             var time = MusicTimeStamp(1.0)

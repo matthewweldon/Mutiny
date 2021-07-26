@@ -13,27 +13,15 @@ import SwiftUI
 /// then fade out.
 public class BezelNotification {
     
-    public var text: String {
-        didSet {
-            label.stringValue = text
-        }
-    }
-    
-    
     let window: NSWindow
     let visibleTime: TimeInterval
-    var label: NSTextField!
     var toast = NSHostingView.init(rootView: Toast.init(muted: false))
-    var muted:Bool
     /// Create a BezelNotification with the given text. It is not displayed until `show()` or `runModal()` is called.
     /// The text is displayed with regular weight and a font size of 18, on a single line.
-    public init(text: String = "",
+    init(view: NSHostingView<Toast>,
                 visibleTime: TimeInterval = 2.0,muted:Bool=true) {
-        self.text = text
-        self.muted = muted
-        if(self.muted){
-            self.toast = NSHostingView.init(rootView: Toast.init(muted: true))
-        }
+        self.toast = view
+        
         self.window = NSWindow(contentRect: NSRect(origin: .zero, size: CGSize(width: 100, height: 500)),
                                styleMask: .borderless, backing: .buffered, defer: true)
         self.visibleTime = visibleTime
@@ -95,35 +83,20 @@ public class BezelNotification {
             visualEffectView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
         ])
 
-        label = NSTextField(labelWithString: self.text)
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = NSFont.systemFont(ofSize: 18)
-        label.setContentHuggingPriority(.defaultHigh, for: .horizontal)
-        label.setContentHuggingPriority(.defaultHigh, for: .vertical)
-        label.setContentCompressionResistancePriority(.required, for: .vertical)
-        label.setContentCompressionResistancePriority(.required, for: .horizontal)
-
         
         toast.translatesAutoresizingMaskIntoConstraints = false
         toast.setContentHuggingPriority(.defaultHigh, for: .horizontal)
         toast.setContentHuggingPriority(.defaultHigh, for: .vertical)
         toast.setContentCompressionResistancePriority(.required, for: .vertical)
         toast.setContentCompressionResistancePriority(.required, for: .horizontal)
-//        visualEffectView.addSubview(label)
         visualEffectView.addSubview(toast)
 
-//        NSLayoutConstraint.activate([
-//            label.leadingAnchor.constraint(equalTo: visualEffectView.leadingAnchor, constant: 10),
-//            label.trailingAnchor.constraint(equalTo: visualEffectView.trailingAnchor, constant: -10),
-//            label.topAnchor.constraint(equalTo: visualEffectView.topAnchor, constant: 10),
-//            label.bottomAnchor.constraint(equalTo: visualEffectView.bottomAnchor, constant: -10)
-//        ])
-                NSLayoutConstraint.activate([
-                    toast.leadingAnchor.constraint(equalTo: visualEffectView.leadingAnchor, constant: 10),
-                    toast.trailingAnchor.constraint(equalTo: visualEffectView.trailingAnchor, constant: -10),
-                    toast.topAnchor.constraint(equalTo: visualEffectView.topAnchor, constant: 10),
-                    toast.bottomAnchor.constraint(equalTo: visualEffectView.bottomAnchor, constant: -10)
-                ])
+        NSLayoutConstraint.activate([
+            toast.leadingAnchor.constraint(equalTo: visualEffectView.leadingAnchor, constant: 10),
+            toast.trailingAnchor.constraint(equalTo: visualEffectView.trailingAnchor, constant: -10),
+            toast.topAnchor.constraint(equalTo: visualEffectView.topAnchor, constant: 10),
+            toast.bottomAnchor.constraint(equalTo: visualEffectView.bottomAnchor, constant: -10)
+        ])
         
     }
     
