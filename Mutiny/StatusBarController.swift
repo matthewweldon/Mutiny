@@ -143,6 +143,7 @@ class StatusBarController {
             statusBar.button?.image = imgIconMuted
             if(Preferences.enableToast){
                 bezel.show()
+            
             }
             
         }

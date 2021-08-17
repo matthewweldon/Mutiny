@@ -48,6 +48,7 @@ public class BezelNotification {
         let newSession = NotificationSession(modal: false)
         self.previousShowSession = newSession
         fadeIn(session: newSession)
+        window.isReleasedWhenClosed = false
         window.makeKeyAndOrderFront(nil)
         window.center()
     }
@@ -123,6 +124,7 @@ public class BezelNotification {
             context.duration = 0.5
             window.animator().alphaValue = 0.0
         }, completionHandler: {
+            self.window.close()
             if session.modal {
                 NSApp.stopModal()
             }
